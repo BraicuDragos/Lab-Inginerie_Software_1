@@ -28,16 +28,33 @@ public class Main {
         print(scoala);
 
         c2.eliminaElev(e3);
-        System.out.println("\nDupa eliminarea unui elev:");
+        System.out.println("\nDupa eliminarea elev:");
         print(scoala);
 
         scoala.eliminaClasa("3E");
-        System.out.println("\nDupa eliminarea unei clase:");
+        System.out.println("\nDupa eliminarea clasa:");
         print(scoala);
 
         scoala.eliminaElevDupaNume("Marius");
-        System.out.println("\nDupa eliminarea unui elev dupa nume:");
+        System.out.println("\nDupa eliminare elev dupa nume:");
         print(scoala);
+
+        scoala.adaugaActivitate(new Activitate("Fotbal", new Profesor("Florea")));
+        scoala.adaugaActivitate(new Activitate("cor", new Profesor("Brad")));
+
+        scoala.inscrieElevLaActivitate("Fotbal", e1);
+        scoala.inscrieElevLaActivitate("Fotbal", e3);
+        scoala.inscrieElevLaActivitate("cor", e2);
+
+        System.out.println("\nActivitati: " + scoala.getNumarActivitati());
+
+        System.out.println("activitati e1: " + e1.getActivitati());
+
+        scoala.eliminaElevDinActivitate("Fotbal", e1);
+        System.out.println("Activitati e1 dupa eliminare: " + e1.getActivitati());
+
+        scoala.eliminaActivitate("cor");
+        System.out.println("Activitati dupa eliminare: " + scoala.getNumarActivitati());
     }
 
     private static void print(Scoala scoala) {

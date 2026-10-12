@@ -5,9 +5,11 @@ import java.util.Map;
 
 public class Scoala {
     private Map<String, Clasa> clase;
+    private Map<String, Activitate> activitati;
 
     public Scoala () {
         clase = new HashMap<>();
+        activitati = new HashMap<>();
     }
 
     public void adaugaClasa (String id, Clasa clasa) {
@@ -38,9 +40,41 @@ public class Scoala {
         }
     }
 
+    public void adaugaActivitate(Activitate activitate) {
+        activitati.put(activitate.getNume(), activitate);
+    }
+
+    public void eliminaActivitate(String nume) {
+        Activitate activitate = activitati.remove(nume);
+        if (activitate != null) {
+            for (Elev e : activitate.getElevi()) {
+                e.eliminaActivitate(nume);
+            }
+        }
+    }
+
+    public void inscrieElevLaActivitate(String numeActivitate, Elev elev) {
+        Activitate activitate = activitati.get(numeActivitate);
+        if (activitate != null) {
+            activitate.adaugaElev(elev);
+        }
+    }
+
+    public void eliminaElevDinActivitate(String numeActivitate, Elev elev) {
+        Activitate activitate = activitati.get(numeActivitate);
+        if (activitate != null) {
+            activitate.eliminaElev(elev);
+        }
+    }
+
+    public int getNumarActivitati() {
+        return activitati.size();
+    }
+
     public int getNumarClase() {
         return clase.size();
     }
+
 
     public int getTotalElevi() {
         int total = 0;
