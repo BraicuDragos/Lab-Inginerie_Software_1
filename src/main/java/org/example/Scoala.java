@@ -1,7 +1,11 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Scoala {
     private Map<String, Clasa> clase;
@@ -67,6 +71,23 @@ public class Scoala {
         }
     }
 
+    public void printTopActivitate() {
+        List<Activitate> top = new ArrayList<>(activitati.values());
+        top.sort((a, b) -> b.getElevi().size() - a.getElevi().size());
+        int loc = 1;
+        for (Activitate a : top) {
+            System.out.println(loc++ + ". " + a.getNume() + " - " + a.getElevi().size() + " elevi");
+        }
+    }
+
+    public int getNumarEleviCuActivitate() {
+        Set<Elev> participanti = new HashSet<>();
+        for (Activitate a : activitati.values()) {
+            participanti.addAll(a.getElevi());
+        }
+        return participanti.size();
+    }
+
     public int getNumarActivitati() {
         return activitati.size();
     }
@@ -74,7 +95,6 @@ public class Scoala {
     public int getNumarClase() {
         return clase.size();
     }
-
 
     public int getTotalElevi() {
         int total = 0;

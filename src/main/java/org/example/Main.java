@@ -45,6 +45,9 @@ public class Main {
         scoala.inscrieElevLaActivitate("Fotbal", e1);
         scoala.inscrieElevLaActivitate("Fotbal", e3);
         scoala.inscrieElevLaActivitate("cor", e2);
+        scoala.inscrieElevLaActivitate("Fotbal", e4);
+        scoala.inscrieElevLaActivitate("Fotbal", e2);
+        scoala.inscrieElevLaActivitate("cor", e5);
 
         System.out.println("\nActivitati: " + scoala.getNumarActivitati());
 
@@ -53,8 +56,11 @@ public class Main {
         scoala.eliminaElevDinActivitate("Fotbal", e1);
         System.out.println("Activitati e1 dupa eliminare: " + e1.getActivitati());
 
-        scoala.eliminaActivitate("cor");
-        System.out.println("Activitati dupa eliminare: " + scoala.getNumarActivitati());
+        System.out.println("\nTop activitati:");
+        scoala.printTopActivitate();
+
+        System.out.println("Elevi cu cel putin o activitate: " + scoala.getNumarEleviCuActivitate());
+
     }
 
     private static void print(Scoala scoala) {
